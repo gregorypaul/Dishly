@@ -1,0 +1,125 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lobster&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, 
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+}
+
+img, svg {
+  max-width: 100%;
+}
+
+.lato-light {
+  font-family: "Lato", sans-serif;
+  font-weight: 300;
+  font-style: normal;
+}
+
+.lato-thin {
+  font-family: "Lato", sans-serif;
+  font-weight: 100;
+  font-style: normal;
+}
+
+
+header > div:not(.green):not(.recipesshow) {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.6) 70%, rgba(255, 255, 255, 0) 100%);
+    /* For older browsers, you might need vendor prefixes: */
+    /* background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(255, 255, 255, 0) 100%); */
+    /* background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%,rgba(255, 255, 255, 0) 100%); */
+}
+
+.blurr {
+  top: 15rem;
+}
+
+.logo-text {
+  font-family: "Lobster", sans-serif;
+}
+
+.text-logo {
+  font-family: "Lobster", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.recipe-card {
+  background-color: #fefcfb;
+    box-shadow: 2px 1px 5px 0px rgba(2, 69, 122, 0.04), 9px 4px 10px 0px rgba(2, 69, 122, 0.03), 19px 10px 13px 0px rgba(2, 69, 122, 0.02), 35px 17px 15px 0px rgba(2, 69, 122, 0.01), 54px 27px 17px 0px rgba(2, 69, 122, 0);
+    overflow: hidden;
+}
+
+.recipe-card img {
+  max-height: 300px;
+  z-index: 0;
+}
+
+.recipe-card-body {
+  position: relative;
+  z-index: 10;
+  background: url(../../public/images/blog-card-bg.png) center top / contain no-repeat;
+  background-position: top left;
+  margin-top: -88px;
+  box-shadow: drop-shadow(-2px -1px 5px rgba(2, 69, 122, 0.08)) drop-shadow(-9px -4px 10px rgba(2, 69, 122, 0.08)) drop-shadow(-19px -10px 13px rgba(2, 69, 122, 0.07)) drop-shadow(-35px -17px 15px rgba(2, 69, 122, 0.03)) drop-shadow(-54px 27px 17px rgba(2, 69, 122, 0));
+  border-radius: 0 0 15px 15px;
+  padding: 67px 14px 24px;
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .recipe-card-body {
+      padding: 68px 16px 26px;
+      background-position: top right;
+      background-size: cover;
+  }
+}
+
+@media only screen and (min-width: 451px) and (max-width: 991px) {
+    .recipe-card-body {
+        background-size: cover;
+    }
+}
+
+@media only screen and (min-width: 640px) and (max-width: 840px) {
+    .recipe-card-body {
+        background-size: contain;
+    }
+}
+
+@media only screen and (max-width: 639px) {
+    .blurr {
+      top: 3rem;
+    }
+}
+
+.modal {
+  display: flex;
+  visibility: hidden;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+}
+.model-inner {
+  background-color: white;
+  border-radius: 0.5em;
+  max-width: 600px;
+  padding: 2em;
+  margin: auto;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid black;
+}
+
+.md\:-mt-30 {
+  margin-top: -10rem;
+}
