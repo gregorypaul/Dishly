@@ -12,9 +12,16 @@
          x-transition:leave-end="-translate-x-full"
          class="relative bg-green-700 text-white w-64 p-6 space-y-4">
 
+        <!-- Close Button -->
         <button @click="mobileOpen = false" class="absolute top-4 right-4 text-white">✕</button>
 
-        <x-nav-links variant="white" />
-        <x-nav-auth variant="white" />
+        <!-- Logo -->
+        <x-nav-logo variant="white" />
+
+        <!-- Links (vertical layout) -->
+        <x-nav-links variant="white" layout="vertical" />
+
+        <!-- Auth -->
+        <x-nav-auth variant="white" layout="vertical" />
     </div>
 </div>
