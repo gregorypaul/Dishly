@@ -6,7 +6,7 @@
     <div class="absolute inset-0 bg-white bg-opacity-5"></div>
     <div class="bg-white/50 backdrop-blur-sm blurr p-8 h-[40%] flex flex-col sm:flex-row justify-center lg:justify-start items-center w-[100%] md:w-[100%] relative">
         <div class="text-center lg:text-left">
-            <h1 class="text-4xl md:text-6xl tracking-tighter font-bold mb-4 text-gray-900">Welcome to <span class="logo-text text-green-700 text-4xl lg:text-7xl tracking-wide">Dishly</span></h1>
+            <h1 class="text-4xl md:text-6xl tracking-tighter font-bold mb-4 text-gray-900">Welcome to <span class="logo-text text-green-700 text-4xl md:text-7xl tracking-wide">Dishly</span></h1>
             <p class="text-lg mb-6">Discover, share, and save your favorite recipes.</p>
             <a href="{{ route('recipes.index') }}" 
                class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg shadow-lg">
