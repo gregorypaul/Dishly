@@ -44,8 +44,17 @@ class RecipeController extends Controller
             ->inRandomOrder()
             ->take(8)
             ->get();
+            $title = 'Related Recipes';
 
-        return view('recipes.show', compact('recipe', 'relatedRecipes', 'averageRating', 'voteCount', 'userRating'));        
+        if ($relatedRecipes->isEmpty()) {
+            $relatedRecipes = Recipe::where('id', '!=', $recipe->id)
+            ->inRandomOrder()
+            ->take(8)
+            ->get();
+            $title = 'Other Recipes You Might Like';
+        }
+
+        return view('recipes.show', compact('recipe', 'relatedRecipes', 'averageRating', 'voteCount', 'userRating', 'title'));        
     }
     // only show form for logged in users
     public function create()

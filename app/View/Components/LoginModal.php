@@ -6,17 +6,15 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class NavLogo extends Component
+class LoginModal extends Component
 {
-    public string $logoColor;
-    public string $logoTextColor;
+    public string $overlayColor;
     /**
      * Create a new component instance.
      */
-    public function __construct(string $logoColor = '#dc2626', string $logoTextColor = 'text-red-600')
+    public function __construct(string $overlayColor='bg-black bg-opacity-50')
     {
-        $this->logoColor = $logoColor;
-        $this->logoTextColor = $logoTextColor;
+        $this->overlayColor = $overlayColor;
     }
 
     /**
@@ -24,6 +22,6 @@ class NavLogo extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.nav-logo');
+        return view('components.login-modal');
     }
 }

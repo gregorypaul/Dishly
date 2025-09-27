@@ -102,7 +102,9 @@
     <aside class="bg-white rounded-md shadow-sm space-y-6">
       @if(isset($relatedRecipes))
         <div class="rounded-xl p-6">
-          <h3 class="text-xl font-semibold mb-4">Related Recipes</h3>
+          <h3 class="text-xl font-semibold mb-4">
+            {{ $title }}
+          </h3>
           <div class="space-y-4">
             @foreach($relatedRecipes as $related)
               <a href="{{ route('recipes.show', $related->id) }}" class="block">
