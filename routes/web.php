@@ -44,6 +44,8 @@ Route::get('/recipes/{recipe}', [RecipeController::class, 'show'])->name('recipe
 Route::middleware('auth')->group(function(){
     Route::get('/recipes/recipe', [RecipeController::class, 'create'])->name('create');
     Route::post('/recipes', [RecipeController::class, 'store'])->name('store');
+  Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+  Route::get('/settings', [ProfileController::class, 'store'])->name('settings');
 });
 
 Route::post('/recipes/{recipe}/rate', [RatingController::class, 'store'])
