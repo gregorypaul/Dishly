@@ -6,17 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class NavLogo extends Component
+class footer extends Component
 {
-    public string $logoColor;
-    public string $logoTextColor;
     /**
      * Create a new component instance.
      */
-    public function __construct(string $logoColor = '#dc2626', string $logoTextColor = 'text-red-600')
+    public function __construct()
     {
-        $this->logoColor = $logoColor;
-        $this->logoTextColor = $logoTextColor;
+        //
     }
 
     /**
@@ -24,6 +21,6 @@ class NavLogo extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.nav-logo');
+        return view('components.footer');
     }
 }

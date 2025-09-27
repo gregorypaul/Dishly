@@ -1,10 +1,13 @@
-@props(['variant' => 'dark', 'layout' => 'horizontal'])
+@props([
+  'linkColor', 
+  'hoverColor',
+  'layout' => 'horizontal',
+  ])
 
 @php
-    $linkClasses = $variant === 'white'
-        ? 'text-white hover:text-red-200'
-        : 'text-gray-700 hover:text-red-600';
-
+    $linkColor = $linkColor ?? 'text-gray-700';
+    $hoverColor = $hoverColor ?? 'hover:text-red-600';
+    $linkClasses = "{$linkColor} {$hoverColor}";
     $containerClasses = $layout === 'vertical'
         ? 'flex flex-col space-y-4'
         : 'hidden md:flex space-x-6';

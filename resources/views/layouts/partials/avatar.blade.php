@@ -1,13 +1,17 @@
 <!-- Avatar -->
   @if(Auth::user() && Auth::user()->avatar)
-    <img src="{{ Auth::user()->avatar }}" 
-          alt="{{ Auth::user()->name }}" 
-          class="w-6 h-6 rounded-full border border-gray-300">
+    <img 
+        src="{{ auth()->user()->avatar }}" 
+        alt="User Avatar" 
+        class="rounded-full object-cover"
+        width="{{ $size }}" 
+        height="{{ $size }}"
+    >
   @else
-    <div class="w-6 h-6 flex items-center justify-center rounded-full bg-gray-600 text-white">
-      <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M5.121 17.804A9 9 0 1118.879 17.804M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
-      </svg>
+    <div 
+        class="rounded-full bg-gray-300 flex items-center justify-center text-gray-600"
+        style="width: {{ $size }}px; height: {{ $size }}px;"
+    >
+        {{ strtoupper(substr(auth()->user()->name ?? 'U', 0, 1)) }}
     </div>
   @endif

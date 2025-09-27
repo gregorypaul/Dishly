@@ -1,3 +1,5 @@
+<!-- Mobile Sidebar (Shared for both navs) -->
+
 <div x-show="mobileOpen" class="fixed inset-0 z-50 flex">
     <!-- Backdrop -->
     <div @click="mobileOpen = false" class="fixed inset-0 bg-black bg-opacity-50"></div>
@@ -16,12 +18,13 @@
         <button @click="mobileOpen = false" class="absolute top-4 right-4 text-white">✕</button>
 
         <!-- Logo -->
-        <x-nav-logo variant="white" />
+        <x-nav-logo logo-color="#ffffff" logo-text-color="text-white" />
 
         <!-- Links (vertical layout) -->
-        <x-nav-links variant="white" layout="vertical" />
+        <x-nav-links linkColor="text-white/90" hoverColor="hover:text-white" layout="vertical" />
 
         <!-- Auth -->
-        <x-nav-auth variant="white" layout="vertical" />
+        <x-nav-auth linkColor="text-white/90" hoverColor="hover:text-white" layout="vertical" />
+        
     </div>
 </div>
