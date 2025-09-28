@@ -28,7 +28,7 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandName('Dishly')
-            ->brandLogo(asset('images/logo.svg'))
+            ->brandLogo(fn() => view('components.admin-logo'))
             ->favicon(asset('images/favicon.ico'))
             ->colors([
                 'primary' => Color::Amber,
@@ -38,11 +38,14 @@ class AdminPanelProvider extends PanelProvider
             ->pages([
                 Pages\Dashboard::class,
             ])
-            // ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            // ->widgets([
-            //     Widgets\AccountWidget::class,
-            //     Widgets\FilamentInfoWidget::class,
-            // ])
+            ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
+            ->widgets([
+                Widgets\AccountWidget::class,
+                \App\Filament\Widgets\StatsOverview::class,
+                // Widgets\FilamentInfoWidget::class,
+                \App\Filament\Widgets\RecentRecipes::class,
+
+    ])
             ->middleware([
                 EncryptCookies::class,
                 AddQueuedCookiesToResponse::class,
