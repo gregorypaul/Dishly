@@ -9,10 +9,25 @@ use Illuminate\Support\Facades\Auth;
 class RecipeController extends Controller
 {
     // show all recipes
-    public function index() 
+    public function index(Request $request) 
     {
-        $recipes = Recipe::latest()->paginate(10);
-        return view('recipes.index', compact('recipes'));
+      $query = Recipe::query();
+
+      if($request->filled('category')) {
+        $query->where('category', $request->category);
+      }
+
+      $recipes = Recipe::latest()->paginate(12);
+
+    // Collect distinct categories + count
+      $categories = Recipe::selectRaw('category, COUNT(*) as total')
+        ->whereNotNull('category')
+        ->groupBy('category')
+        ->pluck('total', 'category')
+        ->toArray();
+
+
+    return view('recipes.index', compact('recipes', 'categories'));
     }
     // show 1 recipe
     public function show(Recipe $recipe) 
