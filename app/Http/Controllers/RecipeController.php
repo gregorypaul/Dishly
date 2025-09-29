@@ -25,8 +25,9 @@ class RecipeController extends Controller
         ->groupBy('category')
         ->pluck('total', 'category')
         ->toArray();
-        
-    return view('recipes.index', compact('recipes', 'categories'));
+
+    $layout = $request->query('layout', 'grid'); // default = grid
+    return view('recipes.index', compact('recipes', 'categories', 'layout'));
     }
 
     // show 1 recipe
