@@ -159,3 +159,12 @@ header > div:not(.green):not(.recipesshow) {
   }
 }
 
+.masonry-item {
+  transition: all 0.3s ease-in-out;
+  display: block;
+}
+
+.z-52 {
+  z-index: 52;
+}
+
