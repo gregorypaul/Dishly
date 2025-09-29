@@ -1,9 +1,13 @@
+import { createIcons, icons } from "lucide";
+
 document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll("[data-recipe-id]").forEach(container => {
+      createIcons({ icons });
+
+    document.querySelectorAll("[data-recipe-id]").forEach((container) => {
         const stars = container.querySelectorAll(".star");
         const recipeId = container.dataset.recipeId;
         const avgRatingEl = container.querySelector(".avg-rating");
-        let userVote = null; 
+        let userVote = null;
 
         // Highlight stars on hover
         stars.forEach((star, i) => {
@@ -16,35 +20,42 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             star.addEventListener("mouseleave", () => {
-              if (userVote !== null) {
-                  highlightStars(stars, userVote); // lock to user vote
-              } else {
-                  renderStarsFromAvg(stars, parseInt(avgRatingEl.dataset.avg) || 0);
-              }
+                if (userVote !== null) {
+                    highlightStars(stars, userVote); // lock to user vote
+                } else {
+                    renderStarsFromAvg(
+                        stars,
+                        parseInt(avgRatingEl.dataset.avg) || 0
+                    );
+                }
             });
 
             // On click: submit rating
             star.addEventListener("click", async () => {
-              const score = i + 1; // 1–5
-              console.log("CLICKED", { score, index: i });
+                const score = i + 1; // 1–5
+                console.log("CLICKED", { score, index: i });
 
-              userVote = score;
-              highlightStars(stars, userVote); // lock stars immediately
+                userVote = score;
+                highlightStars(stars, userVote); // lock stars immediately
 
                 const res = await fetch(`/recipes/${recipeId}/rate`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+                        "X-CSRF-TOKEN": document.querySelector(
+                            'meta[name="csrf-token"]'
+                        ).content,
                     },
-                    body: JSON.stringify({ score })
+                    body: JSON.stringify({ score }),
                 });
 
                 if (res.ok) {
                     const data = await res.json(); // { avg: 4.3, votes: 10 }
                     console.log("SERVER RESPONSE", data);
                     avgRatingEl.dataset.avg = data.avg;
-                    avgRatingEl.textContent = `${data.avg} (${data.votes} ${data.votes === 1 ? 'vote' : 'votes'})`;
+                    avgRatingEl.textContent = `${data.avg} (${data.votes} ${
+                        data.votes === 1 ? "vote" : "votes"
+                    })`;
                     avgRatingEl.dataset.avg = data.avg;
                     renderStarsFromAvg(stars, parseInt(data.avg));
                     window.location.reload(); // refresh after closing
@@ -70,26 +81,30 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         function resetStars(stars) {
-            stars.forEach(s => s.classList.remove("text-yellow-400", "text-gray-600"));
+            stars.forEach((s) =>
+                s.classList.remove("text-yellow-400", "text-gray-600")
+            );
         }
     });
 });
 
 // login modal
-document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.querySelector('#loginForm');
+document.addEventListener("DOMContentLoaded", () => {
+    const loginForm = document.querySelector("#loginForm");
 
     if (loginForm) {
-        loginForm.addEventListener('submit', async (e) => {
+        loginForm.addEventListener("submit", async (e) => {
             e.preventDefault();
 
             let formData = new FormData(loginForm);
 
-            let response = await fetch('/login', {
-                method: 'POST',
-                headers: { 
-                  'Accept': 'application/json',
-                  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+            let response = await fetch("/login", {
+                method: "POST",
+                headers: {
+                    Accept: "application/json",
+                    "X-CSRF-TOKEN": document.querySelector(
+                        'meta[name="csrf-token"]'
+                    ).content,
                 },
                 body: new FormData(loginForm),
             });
@@ -97,10 +112,10 @@ document.addEventListener('DOMContentLoaded', () => {
             let data = await response.json();
 
             if (!response.ok) {
-                showLoginError(data.message || 'Login failed');
+                showLoginError(data.message || "Login failed");
             } else {
-                const userName = data.user.name || 'User';
-                document.querySelector('#loginModalContent').innerHTML = `
+                const userName = data.user.name || "User";
+                document.querySelector("#loginModalContent").innerHTML = `
                     <div class="p-4 text-center">
                         <h2 class="text-xl font-bold">Welcome back, ${userName}!</h2>
                         <p class="mt-2">You are now logged in.</p>
@@ -114,19 +129,19 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function showLoginError(message) {
-    const errorBox = document.querySelector('#loginError');
+    const errorBox = document.querySelector("#loginError");
     if (errorBox) {
         errorBox.textContent = message;
-        errorBox.classList.remove('hidden');
+        errorBox.classList.remove("hidden");
     } else {
         alert(message); // fallback
     }
 }
 
 function closeLoginModal() {
-  const overlay = document.querySelector('')
-  const loginModal = document.querySelector('#loginModalContent');
+    const overlay = document.querySelector("");
+    const loginModal = document.querySelector("#loginModalContent");
     if (loginModal) {
-        loginModal.classList.add('hidden'); 
+        loginModal.classList.add("hidden");
     }
 }

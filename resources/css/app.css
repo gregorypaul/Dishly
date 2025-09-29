@@ -123,3 +123,39 @@ header > div:not(.green):not(.recipesshow) {
 .md\:-mt-30 {
   margin-top: -10rem;
 }
+
+.text-fade-overlay {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 2rem;
+  /* Adjust as needed for the fade length */
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, white);
+  /* Replace 'white' with your background color */
+  pointer-events: none;
+  /* Allows interaction with text underneath */
+}
+@media screen and (min-width: 768px) {
+  .-mt-3.block>nav>div:nth-child(2) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+  .mt-6.block>nav>div:nth-child(2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  nav[role="navigation"] {
+    margin-bottom: 2rem;
+  }
+}
+

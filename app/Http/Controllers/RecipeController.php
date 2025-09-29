@@ -17,18 +17,18 @@ class RecipeController extends Controller
         $query->where('category', $request->category);
       }
 
-      $recipes = Recipe::latest()->paginate(12);
+    $recipes = $query->latest()->paginate(12)->withQueryString();
 
     // Collect distinct categories + count
-      $categories = Recipe::selectRaw('category, COUNT(*) as total')
+    $categories = Recipe::selectRaw('category, COUNT(*) as total')
         ->whereNotNull('category')
         ->groupBy('category')
         ->pluck('total', 'category')
         ->toArray();
-
-
+        
     return view('recipes.index', compact('recipes', 'categories'));
     }
+
     // show 1 recipe
     public function show(Recipe $recipe) 
     {
