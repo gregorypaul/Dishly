@@ -37,7 +37,8 @@ Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('home', [HomeController::class, 'index'])->name('home');
-
+Route::view('/about', 'about')->name('about');
+Route::view('/contact', 'contact')->name('contact');
 Route::get('/recipes', [RecipeController::class, 'index'])->name('recipes.index');
 Route::get('/recipes/{recipe}', [RecipeController::class, 'show'])->name('recipes.show');
 

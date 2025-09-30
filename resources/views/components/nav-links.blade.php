@@ -16,6 +16,6 @@
 <nav class="{{ $containerClasses }}">
     <a href="{{ route('home') }}" class="{{ $linkClasses }}">Home</a>
     <a href="{{ route('recipes.index') }}" class="{{ $linkClasses }}">Recipes</a>
-    <a href="#" class="{{ $linkClasses }}">About</a>
-    <a href="#" class="{{ $linkClasses }}">Contact</a>
+    <a href="{{ route('about') }}" class="{{ $linkClasses }}">About</a>
+    <a href="{{ route('contact') }}" class="{{ $linkClasses }}">Contact</a>
 </nav>

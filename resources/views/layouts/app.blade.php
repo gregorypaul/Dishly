@@ -8,10 +8,11 @@
       @vite(['resources/css/app.css', 'resources/js/app.js'])
       <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   </head>
-  <body class="bg-gray-50 text-gray-900" x-data="{ mobileOpen: false, loginOpen: false }">
+  <body class="bg-gray-50 text-gray-900" x-data="{ mobileOpen: false, loginOpen: false } {{ Str::slug(Route::currentRouteName()) }}">
     <!-- Transparent Hero Nav -->
     @php
-      $navMode = request()->is('recipes/*') ? 'dark' : 'light';
+      $darkRoutes = ['recipes/*', 'about', 'contact'];
+      $navMode = request()->is(...$darkRoutes) ? 'dark' : 'light';
     @endphp
 
     <x-nav-hero :mode="$navMode" />
