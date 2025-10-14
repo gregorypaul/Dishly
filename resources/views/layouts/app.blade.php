@@ -6,9 +6,10 @@
       <meta name="csrf-token" content="{{ csrf_token() }}">
       <title>{{ config('app.name', 'Laravel Recipe App') }}</title>
       @vite(['resources/css/app.css', 'resources/js/app.js'])
+      <link rel="icon" type="image/x-icon" href="https://gregorypauldesigns.com/favicon.ico">
       <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   </head>
-  <body class="bg-gray-50 text-gray-900 {{ Str::slug(Route::currentRouteName()) }}" x-data="{ mobileOpen: false, loginOpen: false }">
+  <body class="bg-gray-50 text-gray-900 {{ Str::slug(Route::currentRouteName()) }}" x-data="{ mobileOpen: false, loginOpen: false, registerOpen: false }">
     <!-- Transparent Hero Nav -->
     @php
       $darkRoutes = ['recipes/*', 'about', 'contact'];
@@ -33,6 +34,7 @@
 
     <!-- Login Modal -->  
     <x-login-modal overlayColor="bg-black bg-opacity-80" />
+    <x-register-modal overlayColor="bg-black bg-opacity-80" />
 
   </body>
 </html>

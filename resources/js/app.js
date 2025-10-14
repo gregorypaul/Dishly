@@ -145,3 +145,60 @@ function closeLoginModal() {
         loginModal.classList.add("hidden");
     }
 }
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const registerForm = document.querySelector("#registerForm");
+
+    if (registerForm) {
+        registerForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(registerForm);
+            const data = Object.fromEntries(formData.entries()); // convert to plain object
+
+            try {
+                const response = await fetch("/api/register", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json",
+                        "X-CSRF-TOKEN": document
+                            .querySelector('meta[name="csrf-token"]')
+                            .getAttribute("content"),
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+
+                if (!response.ok) {
+                    showRegisterError(result.message || "Registration failed");
+                    return;
+                }
+
+                document.querySelector("#registerModalContent").innerHTML = `
+                    <div class="p-4 text-center">
+                        <h2 class="text-xl font-bold text-green-600">
+                            Welcome, ${result.data?.name || "User"}!
+                        </h2>
+                        <p class="mt-2">Your account has been created.</p>
+                    </div>
+                `;
+
+                setTimeout(() => window.location.reload(), 2000);
+            } catch (error) {
+                console.error("Registration error:", error);
+                showRegisterError("Something went wrong. Please try again.");
+            }
+        });
+    }
+});
+
+function showRegisterError(message) {
+    const errorBox = document.querySelector("#registerError");
+    if (errorBox) {
+        errorBox.textContent = message;
+        errorBox.classList.remove("hidden");
+    }
+}

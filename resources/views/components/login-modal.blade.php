@@ -1,3 +1,5 @@
+@props(['overlayColor' => 'bg-black bg-opacity-80'])
+
 <div 
       x-show="loginOpen"
       x-cloak

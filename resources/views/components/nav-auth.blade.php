@@ -54,8 +54,12 @@
         <button @click="loginOpen = true" class="{{ $buttonClasses }} text-center">
             Login
         </button>    
-        <a href="{{ route('register') }}" class="{{ $buttonClasses }} text-center">
+        <button 
+            @click="registerOpen = true"
+            type="button" 
+            class="{{ $buttonClasses }} text-center"
+        >
             Sign Up
-        </a>
+        </button>
     @endauth
 </div>

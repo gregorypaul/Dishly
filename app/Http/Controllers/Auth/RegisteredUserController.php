@@ -19,6 +19,12 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
+
+    public function create()
+    {
+        return view('auth.register');
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -26,11 +32,14 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        
+        $seed = $request->name . '-' . uniqid();
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email, 
             'password' => Hash::make($request->password),
+            'avatar' => 'https://api.dicebear.com/7.x/avataaars/svg?seed=' . urlencode($seed),
         ]);
 
         event(new Registered($user));
